@@ -1081,12 +1081,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Jump   =    Arrow Up / Spacebar
-
-    Move   =    Arrow Left and  Right
-    / A and D
-
-    Fire      =    F'
+  m_Text: "Jump   =    Arrow Up / Spacebar\nMove   =     A and D\nDash    =    Double
+    A and Double D \nFire      =    F"
 --- !u!222 &1819034789
 CanvasRenderer:
   m_ObjectHideFlags: 0

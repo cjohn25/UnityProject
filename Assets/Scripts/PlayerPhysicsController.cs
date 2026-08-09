@@ -1,7 +1,9 @@
 using UnityEditor.Tilemaps;
 using UnityEngine;
-using System;
+using System; 
+using System.Collections; 
 using static UnityEditor.Searcher.SearcherWindow.Alignment;
+using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerInputController))]
 public class PlayerPhysicsController : MonoBehaviour
 {
@@ -14,12 +16,10 @@ public class PlayerPhysicsController : MonoBehaviour
     //private float lastThrust = float.MinValue;
     public event Action<float> ThrustChanged = delegate { };
     [Header("Dash Settings")]
-    public float dashSpeed;
-    public float dashLength = .5f, dashCooldown = 1f;
-    private float dashCounter;
-    private float dashCoolCounter;
-    private float activeMoveSpeed;
-
+    public float dashDistance = 15f;
+    bool isDashing;
+    float doubleTapTime;
+    KeyCode lastKeyCode;
     [Header("Others Settings")]
     [SerializeField] private Rigidbody2D rb;
 
@@ -31,14 +31,50 @@ public class PlayerPhysicsController : MonoBehaviour
     private void Awake()
     {
         PlayerController = GetComponent<PlayerInputController>();
-        activeMoveSpeed = movespeed;
     }
     
 
     private void Update()
     {
-        Movement();
+        horizontal = Input.GetAxis("Horizontal");
+        //Movement();
         Flip();
+        if (isDashing) return;
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            if (doubleTapTime > Time.time && lastKeyCode == KeyCode.A)
+
+            {
+                Debug.Log("dash--");
+                StartCoroutine(Dash(-1));
+            }
+            else
+            {
+                doubleTapTime = Time.time + 0.5f;
+            }
+            lastKeyCode = KeyCode.A;
+           
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            if (doubleTapTime > Time.time && lastKeyCode == KeyCode.D)
+
+            {
+                Debug.Log("dash--");
+                StartCoroutine(Dash(1));
+            }
+            else
+            {
+                doubleTapTime = Time.time + 0.5f;
+            }
+            lastKeyCode = KeyCode.D;
+           
+        }
+        if (!isDashing)
+        {
+            Movement();
+        }
+
 
         if (CanJump() && Input.GetButtonDown("Jump"))
         {
@@ -47,6 +83,19 @@ public class PlayerPhysicsController : MonoBehaviour
             Jump();
         }
        
+
+    }
+ IEnumerator Dash(float Direction)
+    {
+        isDashing = true;
+        rb.linearVelocity = new Vector2(rb.linearVelocityX, 0f);
+        rb.AddForce(new Vector2(dashDistance * Direction, 0f), ForceMode2D.Impulse);
+        float gravity = rb.gravityScale;
+        rb.gravityScale = 0;
+
+        yield return new WaitForSeconds(0.4f);
+        isDashing = false;
+        rb.gravityScale = gravity;
 
     }
     public void Flip()
@@ -59,13 +108,16 @@ public class PlayerPhysicsController : MonoBehaviour
             transform.localScale = localScale;
         }
     }
+    
     public void Movement()
     {
-        horizontal = Input.GetAxis("Horizontal");
-         
-        rb.linearVelocity = new Vector2(horizontal * movespeed, rb.linearVelocityY);
-         
+      
+
+        rb.linearVelocity = new Vector2(horizontal * movespeed , rb.linearVelocityY);
+     
     }
+
+   
     private bool CanJump()
     {
         return Time.time >= nextJumpTime;
