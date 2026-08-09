@@ -7,9 +7,9 @@ using System.Linq;
 using UnityEngine.TextCore.Text;
 public class EnemyScript : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
 
-
+    [SerializeField] ParticleSystem collectPart = null;
+    [SerializeField] public GameManagerScript VictoryMenu;
     [Header("Patrol Points")]
     [SerializeField] private Rigidbody2D rb;
     [SerializeField]
@@ -42,26 +42,21 @@ public class EnemyScript : MonoBehaviour
     private Transform currentTarget; 
     [SerializeField] public int maxHealth = 100;
     private float currentHealth;
-
     void Start()    
     {
         currentHealth = maxHealth;
-        // Start by walking towards Point B
         halfWidth = SR.bounds.extents.x;
         currentDiriection = startDirection;
         currentPoint = PointA.transform;
-        player1 = GameObject.FindGameObjectWithTag("Player");
+        player1 = GameObject.FindGameObjectWithTag("Player"); 
     }
 
     void Update()
-    {
-        //Vector2 point = currentPoint.position - transform.position;\
+    { 
         float xPos = transform.position.x ;
         float yPos = transform.position.y;
-        healthBar.fillAmount = Mathf.Clamp(maxHealth / currentHealth, 0, 1);
-        //Debug.Log(rb.position.x + " -  "+ xPos + "   - "+ rb.linearVelocityX); 
-        if (rb.position.x > xPos)
-        //if(currentPoint == PointA.transform)
+        healthBar.fillAmount = Mathf.Clamp(maxHealth / currentHealth, 0, 1); 
+        if (rb.position.x > xPos) 
         {
             rb.linearVelocity = new Vector2(speed, 0);
             Flip();
@@ -75,25 +70,13 @@ public class EnemyScript : MonoBehaviour
         {
             FireWeapon1();
         }
+         
+    } 
+    public void VictoryOverMenu()
+    {
+        VictoryMenu.Victory();
 
-        //if (Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == PointB.transform)
-        //{
-        //    currentPoint = PointA.transform;
-        //}
-        //if (Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == PointA.transform)
-        //{
-        //    currentPoint = PointB.transform;
-        //}
     }
-    //private void Update()
-    //{
-    //    //rb.linearVelocity = Vector2.right * speed * currentDiriection;
-    //    rb.linearVelocity = new Vector2(speed * currentDiriection, 0);
-    //    movement.x = speed * currentDiriection;
-    //    movement.y = rb.linearVelocityY;
-    //    rb.linearVelocity = movement;
-    //    FlipSprite();
-    //}
     private bool CanFire1()
     {
         return Time.time >= nextFireTime;
@@ -117,23 +100,14 @@ public class EnemyScript : MonoBehaviour
             localScale.x *= -1f;
             transform.localScale = localScale;
         }
-    }
-    //public void EnemyTakeDamage(int amount)
-    //{
-    //    currentHealth -= amount;
-    //}
+    } 
 
     private void FireWeapon1()
     {
         nextFireTime = Time.time + fireRefreshRate;
-        //var bullet = Instantiate(bulletPrefab, weaponMountPoint.position, weaponMountPoint.rotation);
-        //Debug.Log(weaponMountPoint.position.x+ "---test"+ " -- "+ weaponMountPoint.right);
-
-        //bullet.GetComponent<Rigidbody2D>().linearVelocity = weaponMountPoint.right * FireSpeed;
-        // 1. Spawn the bullet at the fire point's position 
+       
         GameObject newBullet = Instantiate(bulletPrefab1, weaponMountPoint1.position, Quaternion.identity);
-
-        // 2. Get the Bullet component from the newly spawned object
+         
         EnemyBullet bulletScript = newBullet.GetComponent<EnemyBullet>();
 
         if (transform.localScale.x > 0)
@@ -144,22 +118,27 @@ public class EnemyScript : MonoBehaviour
         {
             bulletScript.SetDirection(Vector2.right);  // Move Left (-1, 0)
         }
-        // 3. Find out if the player is facing right (positive X scale) or left (negative X scale)
-        // Mathf.Sign converts values to either 1f or -1f
-        //float currentFacingDirection = Mathf.Sign(transform.localScale.x);
-        //Debug.Log("FireWeapon" + transform.localScale.x);
-        //// 4. Send that direction value to the bullet
-        //bulletScript.SetupBullet(currentFacingDirection);
-
+       
 
     }
+    public void ParticleControlPlayable(Collision2D collision)
+    {
+        var em = collectPart.emission;
+        em.enabled = true;
 
-    //private void DealDamageToCharacter()
-    //{
-    //    //Character EnemyCharacter = FindObjectsOfType<Character>().OrderBy(t => Vector3.Distance(transform.position, t.transform.position)).FirstOrDefault();
+        DelayHelper.DelayAction(this, Explode, 0.3f);
+     
+    }
 
-    //    int damageToDeal = 1;
+    public void Explode()
+    {
+        
+        ParticleSystem explosion = Instantiate(collectPart, transform.position, Quaternion.identity);
+        explosion.Play();
 
-    //    EnemyTakeDamage(damageToDeal);
-    //}
+        Destroy(gameObject);
+
+        VictoryOverMenu();
+
+    }
 }

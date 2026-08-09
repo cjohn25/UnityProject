@@ -9,6 +9,7 @@ TagManager:
   - PlayerHealth
   - GameManager
   - GameOverScreen
+  - ExploideParticles
   layers:
   - Default
   - TransparentFX

@@ -1,38 +1,29 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Timeline;
 
 public class Player : MonoBehaviour
 {
-   
- 
+
+    [SerializeField] ParticleSystem collectPart1 = null;
     [Header("Character Settings")]
     [SerializeField] public int PlayerMaxHeatlh = 120;
     private string PlayerName = "CJ";
 
-    [SerializeField] public GameManagerScript menuPlayer;
-    //[SerializeField] public GameObject gameOverUI;
+    [SerializeField] public GameManagerScript menuPlayer; 
     [SerializeField] public UnityEngine.UI.Image PlayerhealthBar;
-    //[Header("Movement Settings")]
-    //private float movespeed = 8f;
-    //private float jumpForce = 25.0f;
+    //[Header("Movement Settings")] 
 
     private bool PlayerIsDead;
     [Header("Ground Check Settings")]
     private bool isGrounded;
     private float horizontalInput;
+     
 
-  
-
-    [Header("Others Settings")]
-    //private float horizontal;
-    //private bool isFacingRight = true;
+    [Header("Others Settings")] 
     private float playerHealth;
-    private Rigidbody2D rb;
-    private Gun2D GunController;
-    private GameObject deathParticlesSystemPrefab;
-    private void Awake()
-    {
-       
-    }
+    private Rigidbody2D rb; 
+    
     void Start()
     { 
         ChangeName();
@@ -57,41 +48,24 @@ public class Player : MonoBehaviour
         Debug.Log(PlayerName + " - started the Game!");
 
     }
-    private void TakeDamage(int damage)
-    {
-        playerHealth -= damage;
-        if (playerHealth <= 0)
-        {
-            Die();
-        }
-    }
-    
-    //private void Jump() { 
-    //  if(Input.GetButtonDown("Jump") )
-    //    {
-    //        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-    //    }
-    //}
-    //public void Movement()
-    //{
-    //    horizontal = Input.GetAxis("Horizontal");
-    //    rb.linearVelocity = new Vector2(horizontal * movespeed, rb.linearVelocityY);
-    //}
-    //public void Flip()
-    //{
-    //    if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
-    //    {
-    //        isFacingRight = !isFacingRight;
-    //        Vector3 localScale = transform.localScale;
-    //        localScale.x *= -1f;
-    //        transform.localScale = localScale;
-    //    }
-    //}
 
+    public void PlayerParticleControlPlayable1()
+    {
+        //var em1 = collectPart1.emission;
+        //em1.enabled = true;
+
+        DelayHelper.DelayAction(this, Die, 0.3f);
+
+    }
 
     public void Die()
     {
-        Instantiate(deathParticlesSystemPrefab, transform.position, Quaternion.identity);
+        ParticleSystem explosion1 = Instantiate(collectPart1, transform.position, Quaternion.identity);
+        explosion1.Play();
         Destroy(gameObject);
+
+        gameOverMenu();
     }
+
+   
 }

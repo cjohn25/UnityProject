@@ -9,7 +9,7 @@ public class EnemyBullet : MonoBehaviour
     private float FireSpeed = 15f;
     private Vector2 moveDirection;
 
-    private Player playerOne;
+
     private bool PlayerIsDead;
     private GameObject PlayerChar;
     public GameObject gameOverUIMenu;
@@ -21,7 +21,7 @@ public class EnemyBullet : MonoBehaviour
 
     void Update()
     {
-        // Move the bullet in the assigned direction using transform.position
+         
         transform.position += (Vector3)moveDirection * FireSpeed * Time.deltaTime;
     }
 
@@ -38,28 +38,12 @@ public class EnemyBullet : MonoBehaviour
             transform.localScale = scale;
         }
     }
-    // Update is called once per frame
-    //void Update()
-    //{
-
-    //    transform.Translate(Vector2.right * flyDirection * FireSpeed * Time.deltaTime);
-    //}
-
-    //public void SetupBullet(float playerDirection)
-    //{
-    //    flyDirection = playerDirection; 
-    //    // Flip the bullet's sprite to face the correct direction
-    //    Vector3 localScale = transform.localScale;
-    //    localScale.x = Mathf.Abs(localScale.x) * playerDirection;
-    //    transform.localScale = localScale;
-    //}
+    
     void OnCollisionEnter2D(Collision2D PlayerCollision)
     {
-        //Destroy(collision.gameObject);
-        //Destroy(gameObject);
+         
         if (PlayerCollision.gameObject.CompareTag("Player"))
-        {
-            //collision.gameObject.GetComponent<EnemyScript>().maxHealth -= life;
+        { 
             PlayerChar = GameObject.FindGameObjectWithTag("Player");
             PlayerCollision.gameObject.GetComponent<Player>().PlayerMaxHeatlh -= 40;
             if (PlayerCollision.gameObject.GetComponent<Player>().PlayerMaxHeatlh <= 0 && !PlayerIsDead)
@@ -67,10 +51,11 @@ public class EnemyBullet : MonoBehaviour
                 Player playerScript = gameObject.GetComponent<Player>();
                 GameObject playerObj = GameObject.FindWithTag("Player");
                 Player playerScript1 = playerObj.GetComponent<Player>();
-                playerScript1.gameOverMenu();
+
+                playerScript1.PlayerParticleControlPlayable1();
+                //playerScript1.gameOverMenu();
                 PlayerIsDead = true;
-                //gameOverUIMenu.SetActive(true);
-                Destroy(PlayerCollision.gameObject);
+                //Destroy(PlayerCollision.gameObject);
             }
 
 

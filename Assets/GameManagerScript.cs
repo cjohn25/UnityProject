@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class GameManagerScript : MonoBehaviour
 {
     [SerializeField] public GameObject gameOverUI;
+    [SerializeField] public GameObject VictoryOverScreen;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -23,6 +24,10 @@ public class GameManagerScript : MonoBehaviour
     public void RestartGame()
     { 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    public void Victory()
+    { 
+        VictoryOverScreen.SetActive(true);
     }
 
     public void QuitGame()

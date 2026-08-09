@@ -13,6 +13,12 @@ public class PlayerPhysicsController : MonoBehaviour
     private PlayerInputController PlayerController;
     //private float lastThrust = float.MinValue;
     public event Action<float> ThrustChanged = delegate { };
+    [Header("Dash Settings")]
+    public float dashSpeed;
+    public float dashLength = .5f, dashCooldown = 1f;
+    private float dashCounter;
+    private float dashCoolCounter;
+    private float activeMoveSpeed;
 
     [Header("Others Settings")]
     [SerializeField] private Rigidbody2D rb;
@@ -25,6 +31,7 @@ public class PlayerPhysicsController : MonoBehaviour
     private void Awake()
     {
         PlayerController = GetComponent<PlayerInputController>();
+        activeMoveSpeed = movespeed;
     }
     
 
@@ -39,22 +46,7 @@ public class PlayerPhysicsController : MonoBehaviour
             nextJumpTime = Time.time + JumpRefreshRate;
             Jump();
         }
-        //isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
-        // 1. Check ground state before applying physics
-        //if (groundCheck != null)
-        //{
-        //    isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-        //}
-
-
-        // 3. Control vertical physics forces
-        //if (jumpRequested)
-        //{
-        //    rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-        //    Debug.Log("Jump force applied: " + jumpForce);
-        //}
-
-        //jumpRequested = false; // Reset the physics trigger flag
+       
 
     }
     public void Flip()
@@ -70,7 +62,9 @@ public class PlayerPhysicsController : MonoBehaviour
     public void Movement()
     {
         horizontal = Input.GetAxis("Horizontal");
+         
         rb.linearVelocity = new Vector2(horizontal * movespeed, rb.linearVelocityY);
+         
     }
     private bool CanJump()
     {
