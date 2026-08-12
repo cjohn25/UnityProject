@@ -10,14 +10,7 @@ TagManager:
   - GameManager
   - GameOverScreen
   - ExploideParticles
-<<<<<<< HEAD
   - Spikes
-=======
-<<<<<<< HEAD
-  - Spikes
-=======
->>>>>>> 3322b5a3c577819109600acec75e509c465adade
->>>>>>> 908d5b6a9f1f6e48e7298819345ebdc133006ff8
   layers:
   - Default
   - TransparentFX
