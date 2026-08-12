@@ -620,6 +620,7 @@ MonoBehaviour:
   weaponMountPoint: {fileID: 389746720}
   bulletPrefab: {fileID: 6256326627412213619, guid: c622603cabd92084db0481b5d7a31429, type: 3}
   fireRefreshRate: 1
+<<<<<<< HEAD
 --- !u!1 &257319370
 GameObject:
   m_ObjectHideFlags: 0
@@ -711,6 +712,8 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+=======
+>>>>>>> 3322b5a3c577819109600acec75e509c465adade
 --- !u!1 &286037596
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,7 +787,11 @@ Transform:
   m_GameObject: {fileID: 286037596}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+<<<<<<< HEAD
   m_LocalPosition: {x: -10.98, y: 0, z: 0}
+=======
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+>>>>>>> 3322b5a3c577819109600acec75e509c465adade
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1053,6 +1060,7 @@ RectTransform:
   m_AnchoredPosition: {x: 282.90002, y: 161.20001}
   m_SizeDelta: {x: 178.889, y: 0.546}
   m_Pivot: {x: 0.5, y: 0.5}
+<<<<<<< HEAD
 --- !u!1 &398586199
 GameObject:
   m_ObjectHideFlags: 0
@@ -1191,6 +1199,8 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+=======
+>>>>>>> 3322b5a3c577819109600acec75e509c465adade
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1322,7 +1332,11 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+<<<<<<< HEAD
   m_LocalPosition: {x: -10.98, y: 0, z: -10}
+=======
+  m_LocalPosition: {x: 0, y: 0, z: -10}
+>>>>>>> 3322b5a3c577819109600acec75e509c465adade
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1465,7 +1479,11 @@ Transform:
   m_GameObject: {fileID: 619394800}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+<<<<<<< HEAD
   m_LocalPosition: {x: -10.98, y: 0, z: 0}
+=======
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+>>>>>>> 3322b5a3c577819109600acec75e509c465adade
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1604,6 +1622,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 694035759}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
 --- !u!1 &730404713
 GameObject:
   m_ObjectHideFlags: 0
@@ -1742,6 +1761,8 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+=======
+>>>>>>> 3322b5a3c577819109600acec75e509c465adade
 --- !u!1 &904411375
 GameObject:
   m_ObjectHideFlags: 0
@@ -1988,9 +2009,12 @@ Transform:
   - {fileID: 1066727407}
   - {fileID: 1687932733}
   - {fileID: 2073423123}
+<<<<<<< HEAD
   - {fileID: 730404714}
   - {fileID: 2009042610}
   - {fileID: 398586200}
+=======
+>>>>>>> 3322b5a3c577819109600acec75e509c465adade
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &983798427
@@ -2241,6 +2265,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1117614932}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
 --- !u!1 &1264484136
 GameObject:
   m_ObjectHideFlags: 0
@@ -2323,6 +2348,8 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3.968933, y: 0.94698524}
   m_EdgeRadius: 0
+=======
+>>>>>>> 3322b5a3c577819109600acec75e509c465adade
 --- !u!1 &1344813396
 GameObject:
   m_ObjectHideFlags: 0
@@ -2461,6 +2488,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3.68, y: 1.186506}
   m_EdgeRadius: 0
+<<<<<<< HEAD
 --- !u!1 &1351279501
 GameObject:
   m_ObjectHideFlags: 0
@@ -2553,6 +2581,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpikeTraps
   anim: {fileID: 1872587664}
+=======
+>>>>>>> 3322b5a3c577819109600acec75e509c465adade
 --- !u!1 &1687932732
 GameObject:
   m_ObjectHideFlags: 0
@@ -12469,6 +12499,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+<<<<<<< HEAD
 --- !u!1 &1872587663
 GameObject:
   m_ObjectHideFlags: 0
@@ -12721,6 +12752,8 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+=======
+>>>>>>> 3322b5a3c577819109600acec75e509c465adade
 --- !u!1 &2004854141
 GameObject:
   m_ObjectHideFlags: 0
@@ -12927,6 +12960,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8c8d7a8e4e75f8469d4e7f7bf8ceed7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyWeapon
+<<<<<<< HEAD
 --- !u!1 &2008680484
 GameObject:
   m_ObjectHideFlags: 0
@@ -13156,6 +13190,8 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+=======
+>>>>>>> 3322b5a3c577819109600acec75e509c465adade
 --- !u!1 &2073423122
 GameObject:
   m_ObjectHideFlags: 0
@@ -13549,4 +13585,7 @@ SceneRoots:
   - {fileID: 2004854146}
   - {fileID: 286037599}
   - {fileID: 2092622114}
+<<<<<<< HEAD
   - {fileID: 1872587665}
+=======
+>>>>>>> 3322b5a3c577819109600acec75e509c465adade
