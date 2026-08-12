@@ -22,10 +22,11 @@ public class WeaponController : MonoBehaviour
    
     private void Update()
     { 
-        if (CanFire() && Input.GetKeyDown(KeyCode.F))
+        if (CanFire())
         {
+            if (Input.GetKeyDown(KeyCode.F)) { 
             FireWeapon();
-
+            }
         }
     }
  
@@ -38,7 +39,23 @@ public class WeaponController : MonoBehaviour
     {
         nextFireTime = Time.time + fireRefreshRate;
         var bullet = Instantiate(bulletPrefab, weaponMountPoint.position, weaponMountPoint.rotation);
-        bullet.GetComponent<Rigidbody2D>().linearVelocity = weaponMountPoint.right * FireSpeed;
+         
+            Debug.Log(weaponMountPoint.position.x);
+
+        if (transform.localScale.x > 0)
+        {
+            //Debug.Log("Right");
+            bullet.GetComponent<Rigidbody2D>().linearVelocity = weaponMountPoint.right * FireSpeed;
+        }
+        else
+        {
+            //Debug.Log("left");
+            bullet.GetComponent<Rigidbody2D>().linearVelocity = -weaponMountPoint.right * FireSpeed;
+        }
+
+        
+
+
 
     }
 

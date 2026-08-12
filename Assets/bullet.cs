@@ -4,7 +4,7 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class bullet : MonoBehaviour
 { 
-    public float life = 3;
+    public float life = 1;
     private GameObject EnemyChar;  
     void Awake()
     {

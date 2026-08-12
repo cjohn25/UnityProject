@@ -24,8 +24,7 @@ public class EnemyBullet : MonoBehaviour
          
         transform.position += (Vector3)moveDirection * FireSpeed * Time.deltaTime;
     }
-
-    // This public function gets called by the Character script right when spawning
+     
     public void SetDirection(Vector2 direction)
     {
         moveDirection = direction;
