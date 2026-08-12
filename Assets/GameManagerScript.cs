@@ -33,7 +33,6 @@ public class GameManagerScript : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
-        //sample//ssdasd
     }
 
     public void mainMenu()
